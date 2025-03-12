@@ -3,7 +3,7 @@ import "./Sideber.css";
 const Sideber = () => {
     return (
         <>
-            <div className="sideber">
+            <div className="sideber shadow card">
                 <div className="side_ber_logo">
                     <span>
                         <h2>Sekhar</h2>

@@ -2,6 +2,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BannerController;
 use Inertia\Inertia;
 
 
@@ -27,9 +28,13 @@ Route::get('/contact', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('admin/Dashboard/Dashboard');
 });
-
+//Add Banner
+Route::get('/add-banner', function (){
+    return Inertia::render('admin/AddBanner/AddBanner');
+});
 //backend
 // Route::get(uri: '/posts', [PostController::class, 'index']);
+Route::post('/banner', [BannerController::class, 'create']);
 
 
 
