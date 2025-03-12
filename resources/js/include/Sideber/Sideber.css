@@ -1,0 +1,12 @@
+.sideber {
+    background: #262626;
+    padding: 15px;
+    color: #fff;
+    border-radius:20px;
+    height:100vh;
+}
+.side_ber_inner_container ul{
+    padding-left: 0px;
+    margin-bottom: 0px;
+    list-style: none;
+}
