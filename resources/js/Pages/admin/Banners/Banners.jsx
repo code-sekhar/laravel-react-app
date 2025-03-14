@@ -1,6 +1,9 @@
 import React from "react";
 import DashboardLayout from "../../../shared/DashboardLayout";
+import { usePage } from "@inertiajs/react";
+import "./Banners.css";
 const Banners = () => {
+    const {banners} = usePage().props;
     return (
         <>
           <div className="banner-wrappers">
@@ -9,30 +12,35 @@ const Banners = () => {
                     <h1>Banners</h1>
                 </div>
                 <div className="banner_title">
-                <table class="table-fixed">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>Song</th>
-                        <th>Artist</th>
-                        <th>Year</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Image</th>
+                        <th>Link</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                        <td>Malcolm Lockyer</td>
-                        <td>1961</td>
-                        </tr>
-                        <tr>
-                        <td>Witchy Woman</td>
-                        <td>The Eagles</td>
-                        <td>1972</td>
-                        </tr>
-                        <tr>
-                        <td>Shining Star</td>
-                        <td>Earth, Wind, and Fire</td>
-                        <td>1975</td>
-                        </tr>
+                        {banners.map((banner) => (
+                            <tr key={banner.id}>
+                                <td>{banner.id}</td>
+                                <td>{banner.title}</td>
+                                <td>{banner.content}</td>
+                                <td>
+                                    <img src={`/storage/${banner.image}`} alt="" width='60'/>
+                                </td>
+                                <td>{banner.link}</td>
+                                <td>
+                                    <div className="d-flex gap-2">
+                                        <button className="btn btn-danger">Delete</button>
+                                        <button className="btn btn-primary">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                     </table>
                 </div>

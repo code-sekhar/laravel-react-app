@@ -6,11 +6,15 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use Exception;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class BannerController extends Controller
 {
-    public function index(){
-
+    public function index():Response{
+        $banners = Banner::all();
+        return Inertia::render('admin/Banners/Banners',[
+            'banners'=>$banners
+        ]);
     }
     public function create(Request $request){
 
