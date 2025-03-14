@@ -31,15 +31,11 @@ class BannerController extends Controller
                 $validated['image'] = $imagePath;
             }
             $banner = Banner::create($validated);
-//            return response()->json([
-//                'success' => true,
-//                'banner' => $banner,
-//                'message' => 'Banner added successfully'
-//            ],201);
-            return Inertia::render('admin/AddBanner/AddBanner',[
-                'posts'=>$banner,
-                'success'=> 'Banner added successfully'
-            ]);
+            // return Inertia::render('admin/AddBanner/AddBanner',[
+            //     'posts'=>$banner,
+            //     'success'=> 'Banner added successfully'
+            // ]);
+            return redirect()->back()->with('success', 'Banner added successfully!');
            // return redirect()->route('banner')->with('success', 'Banner added successfully');
 
     }

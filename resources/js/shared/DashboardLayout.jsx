@@ -1,8 +1,11 @@
 import React from "react";
 import Sideber from "../include/Sideber/Sideber";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const DashboardLayout =({title,children})=>{
     return (
         <>
+        <ToastContainer position="top-right" autoClose={3000} />
             <div className="parrent-class">
                 <div className="inner-container">
                     <div className="container-fluid">

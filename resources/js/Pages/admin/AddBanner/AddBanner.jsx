@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import DashboardLayout from "../../../shared/DashboardLayout";
-import {router, usePage} from "@inertiajs/react"
+import {router, usePage} from "@inertiajs/react";
+import { toast } from "react-toastify";
 const AddBanner =()=>{
     const {banners} = usePage().props;
     const [form,setForm] = useState({title:"",content:"",image:null,link:""});
@@ -19,9 +20,16 @@ const AddBanner =()=>{
         formData.append("link",form.link);
         formData.append("image",form.image);
         router.post("banner",formData,{
-            onSuccess:() => setForm({
-                title:"",content:"",image:null,link:"",
-            })
+            onSuccess:() => {
+                setForm({
+                    title:"",content:"",image:null,link:"",
+                }),
+                toast.success("Banner Added Successfully");
+            },
+            onError:() => {
+                toast.error("Something went wrong");
+            }
+
         })
     };
     console.log(handleSubmit);

@@ -32,9 +32,13 @@ Route::get('/dashboard', function () {
 Route::get('/add-banner', function (){
     return Inertia::render('admin/AddBanner/AddBanner');
 });
+Route::get('/banner', function () {
+    return Inertia::render('admin/Banners/Banners');
+});
 //backend
+
 // Route::get(uri: '/posts', [PostController::class, 'index']);
-Route::post('/banner', [BannerController::class, 'create']);
+Route::post('/banner', [BannerController::class, 'create'])->name('banner.store');;
 
 
 
