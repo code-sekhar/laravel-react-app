@@ -33,6 +33,7 @@ Route::get('/add-banner', function (){
     return Inertia::render('admin/AddBanner/AddBanner');
 });
 Route::get('/banner', [BannerController::class, 'index']);
+Route::delete('/banner/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
 //backend
 
 // Route::get(uri: '/posts', [PostController::class, 'index']);

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class BannerController extends Controller
 {
     public function index():Response{
-        $banners = Banner::all();
+        $banners = Banner::orderBy('id', 'desc')->paginate(4); ;
         return Inertia::render('admin/Banners/Banners',[
             'banners'=>$banners
         ]);
@@ -42,5 +43,16 @@ class BannerController extends Controller
             return redirect()->back()->with('success', 'Banner added successfully!');
            // return redirect()->route('banner')->with('success', 'Banner added successfully');
 
+    }
+    //destroy
+    public function destroy($id)
+    {
+        $bannerFind = Banner::findOrFail($id);
+        //banner Image delete
+        if($bannerFind->image){
+            Storage::delete('public/banner/' . $bannerFind->image);
+        }
+        $bannerFind->delete();
+        return redirect()->back()->with('success', 'Banner deleted successfully!');
     }
 }

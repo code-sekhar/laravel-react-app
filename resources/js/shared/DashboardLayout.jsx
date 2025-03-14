@@ -14,6 +14,7 @@ const DashboardLayout =({title,children})=>{
                                 <Sideber/>
                             </div>
                             <div className="col-lg-8 col-xl-9">
+
                                 <div className="main_content_page">
                                     {children}
                                 </div>
