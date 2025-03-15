@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
-
+use Illuminate\Support\Facades\Redirect;
 class BannerController extends Controller
 {
     public function index():Response{
@@ -47,12 +47,14 @@ class BannerController extends Controller
     //destroy
     public function destroy($id)
     {
+
         $bannerFind = Banner::findOrFail($id);
         //banner Image delete
         if($bannerFind->image){
             Storage::delete('public/banner/' . $bannerFind->image);
         }
         $bannerFind->delete();
-        return redirect()->back()->with('success', 'Banner deleted successfully!');
+        return Redirect::back()->with('success', 'Banner deleted successfully');
+
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardLayout from "../../../shared/DashboardLayout";
-import {Link, router, usePage} from "@inertiajs/react";
+import {Link, router, useForm, usePage} from "@inertiajs/react";
 import "./Banners.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faEye, faTrashCan} from "@fortawesome/free-solid-svg-icons";
@@ -8,16 +8,21 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 const Banners = () => {
     const {banners} = usePage().props;
+    const {delete:destroy} = useForm();
     //banner delete
     const handleDelete = (id) =>{
         if (confirm("Are You Sure you wand to delete this banner?")){
-            router.delete(`/banner/${id}`,{
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
+
+            destroy(route('banner.destroy', id), {
+                preserveScroll: true,
                 onSuccess:()=> {
                     toast.success("Banner Deleted Successfully !");
+                },
+                onError: (error) => {
+                    console.error("Error deleting banner:", error);
+                    toast.error("Failed to delete banner!");
                 }
+
             });
         }
     }

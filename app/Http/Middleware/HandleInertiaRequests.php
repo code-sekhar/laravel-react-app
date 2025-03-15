@@ -41,4 +41,8 @@ class HandleInertiaRequests extends Middleware
             ],
         ]);
     }
+    public function rootView(Request $request): string
+    {
+        return 'app'; // Ensure this is set properly
+    }
 }
